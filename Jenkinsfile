@@ -16,8 +16,8 @@ node{
 
     stage("Push Docker Image"){
         withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-            sh "docker login -u dall49 -p ${dockerHubPwd}"
-        }
+           sh "echo '${dockerHubPwd}' | docker login -u dall49 --password-stdin"
+        }             
         sh "docker push dall49/my-app:1.1.0"
     }
     
